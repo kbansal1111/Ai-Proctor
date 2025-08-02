@@ -45,8 +45,8 @@ A modern, AI-powered online exam proctoring system with real-time object detecti
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/<your-username>/<your-repo>.git
-   cd <your-repo>
+   git clone https://github.com/kbansal1111/Ai-Proctor.git
+   cd Ai-proctor
    ```
 
 2. **Frontend Setup:**
