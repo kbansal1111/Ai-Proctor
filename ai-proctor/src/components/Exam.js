@@ -326,6 +326,51 @@ export default function Exam() {
       return () => clearInterval(interval);
   }, [started, submitted, detectObjectDuringExam]);
 
+  // Disable copy/paste functionality during exam
+  useEffect(() => {
+    const handleCopyPaste = (e) => {
+      e.preventDefault();
+      alert("Copy/paste is disabled during the exam!");
+    };
+
+    document.addEventListener("copy", handleCopyPaste);
+    document.addEventListener("paste", handleCopyPaste);
+
+    return () => {
+      document.removeEventListener("copy", handleCopyPaste);
+      document.removeEventListener("paste", handleCopyPaste);
+    };
+  }, []);
+
+  // Disable tab switching during exam
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden && started && !submitted) {
+        alert("⚠️ Tab switching is not allowed during the exam! Returning to exam.");
+        // Force focus back to the exam tab
+        window.focus();
+      }
+    };
+
+    const handleBeforeUnload = (e) => {
+      if (started && !submitted) {
+        e.preventDefault();
+        e.returnValue = "⚠️ You cannot leave the exam page!";
+        return "⚠️ You cannot leave the exam page!";
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [started, submitted]);
+
+
+
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
