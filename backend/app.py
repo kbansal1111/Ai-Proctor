@@ -26,7 +26,7 @@ DB_CONFIG = {
 registered_faces = set()  # Just store roll numbers that registered
 
 # Load YOLOv5 model (do this once at startup)
-model = torch.hub.load('ultralytics/yolov5', 'custom', path='yolov5m.pt', source='local')
+model = torch.hub.load('ultralytics/yolov5', 'custom', path='yolov5m.pt', source='github')
 
 MODEL_PATH = "yolov5m.pt"
 GDRIVE_ID = "1IdrDaiM5xiK0P8-5FOFfhgS-oKyQNrFp"
@@ -348,16 +348,16 @@ def detect_object():
     rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     results = model(rgb)
     df = results.pandas().xyxy[0]
-    
+
     # Increase confidence threshold to reduce false positives
-    df = df[df['confidence'] > 0.5]  # Increased from 0.3 to 0.5
+    df = df[df['confidence'] > 0.5]
     labels = df['name'].tolist()
-    print("Detected labels (conf > 0.5):", labels)
-    
-    # Only check for phone and laptop - remove other objects
-    forbidden = {'cell phone', 'laptop', 'phone', 'mobile phone'}
+    print("Detected labels (conf > 0.5):", labels)  # Debug: see what YOLOv5 returns
+
+    # Only check for 'cell phone' and 'laptop'
+    forbidden = {'cell phone', 'laptop'}
     detected = [label for label in labels if label in forbidden]
-    
+
     if detected:
         return jsonify({'status': 'forbidden_object', 'objects': detected})
     else:
