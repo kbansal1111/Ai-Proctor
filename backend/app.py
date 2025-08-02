@@ -15,7 +15,7 @@ CORS(app)
 
 # PostgreSQL Database Configuration
 DB_CONFIG = {
-    'host': 'localhost',
+    'host': 'host.docker.internal',
     'database': 'ai_proctor_db',
     'user': 'postgres',
     'password': '1234',
@@ -26,7 +26,9 @@ DB_CONFIG = {
 registered_faces = set()  # Just store roll numbers that registered
 
 # Load YOLOv5 model (do this once at startup)
-model = torch.hub.load('ultralytics/yolov5', 'custom', path='yolov5m.pt', source='github')
+from ultralytics import YOLO
+
+model = YOLO("yolov5m.pt")
 
 MODEL_PATH = "yolov5m.pt"
 GDRIVE_ID = "1IdrDaiM5xiK0P8-5FOFfhgS-oKyQNrFp"
@@ -366,4 +368,4 @@ def detect_object():
 if __name__ == "__main__":
     # Initialize database tables
     init_database()
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
