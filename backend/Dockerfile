@@ -1,30 +1,31 @@
 # Use a lightweight base image
-FROM python:3.10-slim
+FROM python:3.11.8-slim
 
-# Install system dependencies for OpenCV & MediaPipe
+# Install system dependencies for OpenCV, MediaPipe, etc.
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     ffmpeg \
     libsm6 \
     libxext6 \
     libglib2.0-0 \
-    libgl1-mesa-glx && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    libgl1-mesa-glx \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-
-# Set working directory inside container
+# Set working directory
 WORKDIR /app
 
-# Copy everything from your backend into the container
-COPY . .
+# Copy dependency file first (to cache better during builds)
+COPY requirements.txt .
 
-# Install Python dependencies
+# Upgrade pip and install Python dependencies
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose the Flask port
+# Copy the rest of your application code
+COPY . .
+
+# Expose port for Flask
 EXPOSE 5000
 
-# Run your Flask app
+# Run Flask app
 CMD ["python", "app.py"]

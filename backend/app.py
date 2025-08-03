@@ -348,15 +348,33 @@ def detect_object():
     npimg = np.frombuffer(file.read(), np.uint8)
     frame = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
     rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-    results = model(rgb)
-    df = results.pandas().xyxy[0]
 
-    # Increase confidence threshold to reduce false positives
-    df = df[df['confidence'] > 0.5]
-    labels = df['name'].tolist()
-    print("Detected labels (conf > 0.5):", labels)  # Debug: see what YOLOv5 returns
+    results = model(rgb)[0]  # get the first Result object
 
-    # Only check for 'cell phone' and 'laptop'
+    # extract boxes and class names
+    boxes = results.boxes
+    names = results.names
+
+    data = []
+    for box in boxes:
+        cls_id = int(box.cls[0])
+        name = names[cls_id]
+        conf = float(box.conf[0])
+        x1, y1, x2, y2 = box.xyxy[0].tolist()
+        data.append({
+            'name': name,
+            'confidence': conf,
+            'xmin': x1,
+            'ymin': y1,
+            'xmax': x2,
+            'ymax': y2
+        })
+
+    # confidence filter
+    data = [d for d in data if d['confidence'] > 0.5]
+    labels = [d['name'] for d in data]
+
+    # Check for forbidden objects
     forbidden = {'cell phone', 'laptop'}
     detected = [label for label in labels if label in forbidden]
 
@@ -364,6 +382,7 @@ def detect_object():
         return jsonify({'status': 'forbidden_object', 'objects': detected})
     else:
         return jsonify({'status': 'clear'})
+
 
 if __name__ == "__main__":
     # Initialize database tables
