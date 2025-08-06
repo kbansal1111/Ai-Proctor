@@ -136,8 +136,8 @@ ai-proctor/
 
 ## 🚀 Deployment
 
-- **Frontend:** Deploy as a static site (e.g., Render Static Site).
-- **Backend:** Deploy as a Python web service (e.g., Render Web Service).
+- **Frontend:** Deploy as a static site (Render Static Site).
+- **Backend:** Deploy as a Python web service (AWS EC2).
 - **Database:** Use Render PostgreSQL or your own PostgreSQL instance.
 - **Environment Variables:** Set database connection strings and API URLs as needed.
 
