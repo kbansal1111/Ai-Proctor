@@ -161,4 +161,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 📞 Support
 
-For questions, issues, or feature requests, please open an issue on [GitHub](https://github.com/<your-username>/<your-repo>/issues) or contact [your-email@example.com].
+For questions, issues, or feature requests, please open an issue on [GitHub](https://github.com/kbansal1111/Ai-Proctor/issues) or contact [kartikbansal9152@gmail.com].
