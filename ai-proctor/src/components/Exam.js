@@ -145,7 +145,7 @@ export default function Exam() {
     formData.append("image", blob, "face.jpg");
 
     // Register face "http://127.0.0.1:5000/register-face"
-    const res = await fetch("http://127.0.0.1:5000/register-face", {
+    const res = await fetch("http://13.53.233.58:5000/register-face", {
       method: "POST",
       body: formData,
     });
@@ -191,7 +191,7 @@ export default function Exam() {
       formData.append("roll_number", rollNumber);
       formData.append("image", blob, "frame.jpg");
 
-      const res = await fetch("http://127.0.0.1:5000/verify-face", {
+      const res = await fetch("http://13.53.233.58:5000/verify-face", {
         method: "POST",
         body: formData,
       });
@@ -225,7 +225,7 @@ export default function Exam() {
       const formData = new FormData();
       formData.append("image", blob, "frame.jpg");
 
-      const res = await fetch("http://127.0.0.1:5000/detect-object", {
+      const res = await fetch("http://13.53.233.58:5000/detect-object", {
         method: "POST",
         body: formData,
       });
@@ -248,7 +248,7 @@ export default function Exam() {
       .then(blob => {
         const formData = new FormData();
         formData.append('image', blob, 'frame.jpg');
-        fetch("http://127.0.0.1:5000/detect-head", {
+        fetch("http://13.53.233.58:5000/detect-head", {
           method: "POST",
           body: formData,
         })
@@ -261,7 +261,7 @@ export default function Exam() {
               direction: data.direction,
               time: new Date().toLocaleTimeString()
             };
-            fetch("http://127.0.0.1:5000/log-alert", {
+            fetch("http://13.53.233.58:5000/log-alert", {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(alertData)
