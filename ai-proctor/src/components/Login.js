@@ -14,7 +14,7 @@ export default function Login() {
         setError("");
         setIsLoading(true);
         const loginData = { username, rollNumber, password };
-        fetch("http://13.53.233.58:5000/login", {
+        fetch("https://13.53.233.58:5000/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(loginData)
