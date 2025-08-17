@@ -94,16 +94,16 @@ export default function ProctorDashboard() {
         {studentWithMostAlerts && studentWithMostAlerts.counts.total > 0 && (
           <div className="col-12 mb-4">
             <div style={{ 
-              backgroundColor: '#dc3545', 
+              backgroundColor: '#dd5361ff', 
               color: 'white', 
               padding: '25px', 
               borderRadius: '15px',
-              boxShadow: '0 8px 16px rgba(220, 53, 69, 0.3)',
-              border: '3px solid #c82333',
+              boxShadow: '0 8px 16px rgba(221, 83, 97, 0.3)',
+              border: '3px solid #dd5361ff',
               textAlign: 'center'
             }}>
               <div style={{ fontSize: '2rem', marginBottom: '10px' }}>
-                🚨 HIGHEST ALERT STUDENT
+                 HIGHEST ALERT STUDENT
               </div>
               <div style={{ 
                 fontSize: '3rem', 

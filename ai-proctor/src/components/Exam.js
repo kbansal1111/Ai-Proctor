@@ -468,7 +468,7 @@ export default function Exam() {
                 boxShadow: '0 5px 15px rgba(102, 126, 234, 0.3)'
               }}
             >
-              {registering ? "🔄 Registering..." : "🚀 Start Exam"}
+              {registering ? "🔄 Registering..." : " Start Exam"}
             </button>
           </div>
         </div>
@@ -501,7 +501,7 @@ export default function Exam() {
                 fontWeight: 'bold',
                 color: timeLeft < 60 ? '#f44336' : '#1976d2'
               }}>
-                ⏰ Time Left: {formatTime(timeLeft)}
+                Time Left: {formatTime(timeLeft)}
               </div>
               <div style={{
                 backgroundColor: '#ff9800',
@@ -510,7 +510,7 @@ export default function Exam() {
                 borderRadius: '20px',
                 fontWeight: 'bold'
               }}>
-                📄 Question {currentQuestionIndex + 1} of {questions.length}
+                Question {currentQuestionIndex + 1} of {questions.length}
               </div>
             </div>
 
@@ -530,7 +530,7 @@ export default function Exam() {
                     marginBottom: '25px',
                     fontWeight: '600'
                   }}>
-                    ❓ {questions[currentQuestionIndex].questionText}
+                    {questions[currentQuestionIndex].questionText}
                   </h3>
                   
                   {questions[currentQuestionIndex].answerOptions.map((option, oIdx) => (
@@ -602,7 +602,7 @@ export default function Exam() {
                     borderRadius: '20px',
                     fontWeight: 'bold'
                   }}>
-                    📄 {currentQuestionIndex + 1} / {questions.length}
+                     {currentQuestionIndex + 1} / {questions.length}
                   </span>
                   
                   <button 
@@ -639,7 +639,7 @@ export default function Exam() {
                       transition: 'all 0.3s ease'
                     }}
                   >
-                    🎯 Submit Exam
+                    Submit Exam
                   </button>
                 )}
               </>
@@ -658,7 +658,7 @@ export default function Exam() {
                   fontWeight: 'bold',
                   marginBottom: '20px'
                 }}>
-                  🎉 Exam Completed!
+                  Exam Completed!
                 </h2>
                 <div style={{
                   fontSize: '2rem',
@@ -715,7 +715,7 @@ export default function Exam() {
               fontWeight: 'bold',
               width: '100%'
             }}>
-              📹 AI Proctoring Active
+             AI Proctoring Active
             </div>
             
             <Webcam
@@ -745,7 +745,7 @@ export default function Exam() {
                 marginBottom: '15px',
                 width: '100%'
               }}>
-                {headAlert.startsWith("ALERT") ? "🚨 " : "✅ "}{headAlert}
+                {headAlert}
               </div>
             )}
             
@@ -760,7 +760,7 @@ export default function Exam() {
                 border: '1px solid #dee2e6',
                 width: '100%'
               }}>
-                🔍 {objectDetectionStatus}
+                {objectDetectionStatus}
               </div>
             )}
           </div>

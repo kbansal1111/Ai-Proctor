@@ -211,8 +211,8 @@ export default function Login() {
                         style={{
                             width: "100%",
                             padding: "15px",
-                            backgroundColor: isLoading ? "#95a5a6" : "linear-gradient(135deg, #667eea, #764ba2)",
-                            color: "white",
+                            backgroundColor: isLoading ? "#506668ff" : "linear-gradient(135deg, #667eea, #764ba2)",
+                            color: "#7a4747",
                             border: "none",
                             borderRadius: "10px",
                             fontSize: "1.1rem",
@@ -237,7 +237,7 @@ export default function Login() {
                         {isLoading ? (
                             <span>🔄 Logging in...</span>
                         ) : (
-                            <span>🚀 Login to Exam</span>
+                            <span> Login to Exam</span>
                         )}
                     </button>
                 </form>

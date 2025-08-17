@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Instruction() {
     const [checked, setChecked] = React.useState(false);
-    const [currentStep, setCurrentStep] = React.useState(0);
+    const [, setCurrentStep] = React.useState(0);
     
     const instructions = [
         {
@@ -250,7 +250,7 @@ export default function Instruction() {
                             cursor: "pointer",
                             margin: "0"
                         }}>
-                            ✅ I have read and understood all the instructions above
+                             I have read and understood all the instructions above
                         </label>
                     </div>
                 </div>
@@ -286,9 +286,9 @@ export default function Instruction() {
                     }}
                 >
                     {checked ? (
-                        <span>🚀 Start Exam Now</span>
+                        <span> Start Exam Now</span>
                     ) : (
-                        <span>📋 Please read all instructions first</span>
+                        <span> Please read all instructions first</span>
                     )}
                 </button>
 
