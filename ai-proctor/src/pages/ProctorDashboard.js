@@ -6,7 +6,7 @@ export default function ProctorDashboard() {
   const [search, setSearch] = useState("");
 //'http://localhost:5000/alerts'
   useEffect(() => {
-    fetch('http://13.53.233.58:5000/alerts')
+    fetch('http://localhost:5000/alerts')
       .then(res => res.json())
       .then(data => {
         console.log('Alerts data received:', data);

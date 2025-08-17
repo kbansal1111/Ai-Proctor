@@ -9,18 +9,18 @@ import os
 from datetime import datetime
 import json
 import gdown
-from dotenv import load_dotenv
 
 app = Flask(__name__)
+
 CORS(app)
-load_dotenv()
+
 # PostgreSQL Database Configuration
 DB_CONFIG = {
-    'host': os.getenv('DB_HOST'),
-    'database': os.getenv('DB_NAME'),
-    'user': os.getenv('DB_USER'),
-    'password': os.getenv('DB_PASSWORD'),
-    'port': os.getenv('DB_PORT')
+    "host": "127.0.0.1",
+    "port": "5432",
+    "database": "ai_proctor_db",
+    "user": "postgres",
+    "password": "1234"
 }
 # In-memory storage for registered faces only
 registered_faces = set()  # Just store roll numbers that registered
@@ -28,14 +28,14 @@ registered_faces = set()  # Just store roll numbers that registered
 # Load YOLOv5 model (do this once at startup)
 from ultralytics import YOLO
 
-model = YOLO("yolov5m.pt")
+model = YOLO("yolov5mu.pt")
 
-MODEL_PATH = "yolov5m.pt"
-GDRIVE_ID = "1IdrDaiM5xiK0P8-5FOFfhgS-oKyQNrFp"
+MODEL_PATH = "yolov5mu.pt"
+GDRIVE_ID = "1cfF-h42hdcfYdqzUxyE38qXryUddtT-n"
 GDRIVE_URL = f"https://drive.google.com/uc?id={GDRIVE_ID}"
 
 if not os.path.exists(MODEL_PATH):
-    print("Downloading YOLOv5m model from Google Drive...")
+    print("Downloading YOLOv5mu model from Google Drive...")
     gdown.download(GDRIVE_URL, MODEL_PATH, quiet=False)
 
 def get_db_connection():
